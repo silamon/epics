@@ -1,0 +1,20 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Feature Requests
+    url: https://github.com/home-assistant/feature-requests/discussions
+    about: Suggest new features for Home Assistant
+  - name: Roadmap Repository
+    url: https://github.com/home-assistant/roadmap
+    about: View strategic opportunities and high-level planning
+  - name: Bug Reports - Core
+    url: https://github.com/home-assistant/core/issues/new/choose
+    about: Report bugs in Home Assistant Core
+  - name: Bug Reports - Frontend
+    url: https://github.com/home-assistant/frontend/issues/new/choose
+    about: Report bugs in the Home Assistant Frontend
+  - name: Community Support
+    url: https://discord.gg/home-assistant
+    about: Get help from the Home Assistant community
+  - name: Documentation
+    url: https://www.home-assistant.io/
+    about: Read the Home Assistant documentation

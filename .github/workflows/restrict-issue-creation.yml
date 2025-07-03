@@ -1,0 +1,66 @@
+name: Restrict Issue Creation
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  check-membership:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check organization membership
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issue = context.issue;
+            const creator = context.payload.issue.user.login;
+
+            try {
+              // Check if user is a member of the Home Assistant organization
+              await github.rest.orgs.checkMembershipForUser({
+                org: 'home-assistant',
+                username: creator
+              });
+              
+              console.log(`${creator} is a member of the Home Assistant organization`);
+              
+            } catch (error) {
+              // User is not a member
+              console.log(`${creator} is not a member of the Home Assistant organization`);
+              
+              // Post explanation comment
+              const comment = `Hi @${creator},
+
+            Thank you for your interest in contributing to Home Assistant!
+
+            This repository is used exclusively by Open Home Foundation staff and Home Assistant organization members to track epics - larger bodies of work that span multiple tasks and repositories.
+
+            If you'd like to:
+            - **Suggest a new feature**: Please visit our [Feature Requests](https://github.com/home-assistant/feature-requests/discussions) repository
+            - **Report a bug**: Use the appropriate repository ([Core](https://github.com/home-assistant/core/issues/new/choose) or [Frontend](https://github.com/home-assistant/frontend/issues/new/choose))
+            - **View our roadmap**: Check out the [Roadmap repository](https://github.com/home-assistant/roadmap)
+
+            Your input is valuable to us! Feature requests from the community are regularly reviewed and can influence the epics we create here.
+
+            This issue will be automatically closed. If you believe you should have access to create epics, please contact the Home Assistant team through the appropriate channels.`;
+
+              await github.rest.issues.createComment({
+                ...issue,
+                body: comment
+              });
+              
+              // Close the issue
+              await github.rest.issues.update({
+                ...issue,
+                state: 'closed',
+                state_reason: 'not_planned'
+              });
+              
+              // Add labels
+              await github.rest.issues.addLabels({
+                ...issue,
+                labels: ['non-member', 'auto-closed']
+              });
+            }
+

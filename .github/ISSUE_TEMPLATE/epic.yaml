@@ -1,0 +1,52 @@
+name: Epic
+description: For staff only - Create an epic
+type: Epic
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ⚠️ RESTRICTED ACCESS
+
+        **This form is restricted to Open Home Foundation staff, authorized contributors, and organization members only.**
+
+        If you are a community member wanting to contribute:
+
+        - For bug reports: Use the appropriate repository's bug report form
+        - For feature requests: Submit to [Feature Requests](https://github.com/home-assistant/feature-requests)
+
+        ---
+
+        ### For authorized contributors
+        Use this form to create epics - larger bodies of work consisting of multiple tasks that may span across multiple repositories.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: |
+        Provide a clear and detailed description of the epic that needs to be accomplished.
+        Be specific about what needs to be done, why it's important, and the expected outcome.
+      placeholder: |
+        Describe the epic, including:
+        - What needs to be done
+        - Why this epic is needed
+        - Expected outcome
+        - Key objectives and deliverables
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional context
+      description: |
+        Any additional information, links, research, or context that would be helpful.
+        Include links to related roadmap opportunities, feature requests, scope boundaries, etc.
+      placeholder: |
+        - Roadmap opportunity: [links]
+        - Feature request: [link]
+        - Technical design documents: [link]
+        - Scope boundaries: [what's in/out of scope]
+        - Dependencies: [other epics or work that must be completed first]
+    validations:
+      required: false
