@@ -14,7 +14,8 @@ An epic represents a significant feature, improvement, or initiative that:
 - Has clear objectives and measurable outcomes
 - References multiple tasks to achieve a deliverable
 
-> [!IMPORTANT] > **This repository is restricted to Open Home Foundation staff and authorized contributors only.**
+> [!IMPORTANT]
+> **This repository is restricted to Open Home Foundation staff and authorized contributors only.**
 >
 > Community members should submit feature requests to the [Feature Requests repository](https://github.com/home-assistant/feature-requests), where they will be reviewed by the product team and potentially incorporated into roadmap opportunities.
 >
